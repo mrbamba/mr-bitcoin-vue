@@ -1,7 +1,7 @@
 <template>
     <div class="app-header">
         <nav>
-            <router-link to="/" :class="routerlink">Home</router-link>
+            <router-link to="/">Home</router-link>
             <router-link to="/contacts">Contacts</router-link>
             <router-link to="/statistics">Statistics</router-link>
             <router-link to="/about">About</router-link>
@@ -15,9 +15,6 @@
 </script>
 <style lang="scss">
 .app-header {
-    // display: flex;
-    // justify-content: space-around;
-    // align-items: center;
     text-align: center;
     vertical-align: middle;
     line-height: 100px;

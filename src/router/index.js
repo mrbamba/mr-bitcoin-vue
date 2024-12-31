@@ -1,10 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ContactsView from '@/views/ContactsView.vue'
-import StatisticsView from '@/views/StatisticsView.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import HomeView from '../views/Home.vue'
+import ContactIndex from '@/views/ContactIndex.vue'
+import ContactDetails from '@/views/ContactDetails.vue'
+import Statistics from '@/views/Statistics.vue'
+import ContactEdit from '@/views/ContactEdit.vue'
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHashHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
@@ -13,21 +15,31 @@ const router = createRouter({
         }, 
         {
             path: '/contacts',
-            name: 'ContactsView',
-            component: ContactsView,
+            name: 'ContactIndex',
+            component: ContactIndex,
+        },
+        {
+            path: '/contacts/:_id',
+            name: 'ContactDetails',
+            component: ContactDetails,
+        },
+        {
+            path: '/contacts/edit/:_id',
+            name: 'ContactEdit',
+            component: ContactEdit,
         },
         {
             path: '/statistics',
-            name: 'StatisticsView',
-            component: StatisticsView,
+            name: 'Statistics',
+            component: Statistics,
         },
         {
             path: '/about',
-            name: 'AboutView',
+            name: 'About',
             // route level code-splitting
             // this generates a separate chunk (About.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import('../views/AboutView.vue'),
+            component: () => import('../views/About.vue'),
         },
     ],
 })
