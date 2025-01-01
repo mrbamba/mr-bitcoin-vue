@@ -157,7 +157,6 @@ function getContactById(id) {
 }
 
 function deleteContact(id) {
-    
     return new Promise((resolve, reject) => {
         const index = contacts.findIndex(contact => contact._id === id)
         if (index !== -1) {

@@ -7,3 +7,7 @@ const user = {
 export const userService = {
     getUser,
 }
+
+function getUser(){
+    return user
+}

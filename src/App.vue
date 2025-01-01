@@ -1,24 +1,27 @@
 <template>
-    <AppHeader/>
+    <AppHeader />
+    <main>
+        <RouterView />
 
-    <RouterView />
-    <AppFooter/>
+    </main>
+    <AppFooter />
 </template>
 
 <script>
-import AppFooter from './cmps/AppFooter.vue';
-import AppHeader from './cmps/AppHeader.vue';
+    import AppFooter from './cmps/AppFooter.vue';
+    import AppHeader from './cmps/AppHeader.vue';
 
-    export default{
-        components:{
+    export default {
+        components: {
             AppHeader,
             AppFooter,
         }
     }
 </script>
-<!-- <style scoped>
+<style scoped>
 main {
-    /* min-height: 100vh; */
+    /* min-height: 100%; */
+    min-height: calc(100vh - 190px);
 
 }
-</style> -->
+</style>

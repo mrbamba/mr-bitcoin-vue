@@ -4,7 +4,7 @@
   /* max-width: 1280px; */
   margin: 0 auto;
   font-weight: normal;
-  display: grid;
+  /* display: grid; */
   /* grid-template-rows: 1fr 1fr; */
 }
 
@@ -17,14 +17,3 @@ body {
 
 
 
-@media (min-width: 1024px) {
-  body {
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    /* grid-template-rows: 1fr 1fr; */
-    /* padding: 0 2rem; */
-  }
-}

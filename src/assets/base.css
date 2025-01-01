@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 
 body {
   max-height: 100vh;
@@ -24,4 +27,15 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, p {
+    padding: 0;
+    margin: 0;
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+    font-size: .9em;
 }

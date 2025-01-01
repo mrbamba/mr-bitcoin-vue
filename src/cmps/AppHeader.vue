@@ -30,8 +30,9 @@
 
     nav {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
+        height: 100px;
 
         a {
             text-decoration: none;

@@ -32,7 +32,6 @@ import ContactList from '@/cmps/ContactList.vue';
             },
             async remove(contactId) {
                 try {
-                    console.log(this.contacts.length);
                     await contactService.deleteContact(contactId)
                     this.contacts = this.contacts.filter(contact => contact._id !== contactId);
                 } catch (err) {
