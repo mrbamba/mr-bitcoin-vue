@@ -37,10 +37,10 @@
 .contacts-list {
     ul {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 0.1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 10px;
         list-style: none;
-        padding: 0px;
+        padding: 0px 10px;
 
         li {
             display: grid;
