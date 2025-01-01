@@ -15,7 +15,7 @@
 </template>
 <script>
     import BarChart from '@/cmps/BarChart.vue';
-    import { bitcoinService } from '@/services/BitcoinService';
+    import { bitcoinService } from '@/services/bitcoinService.js';
     export default {
         data() {
             return {

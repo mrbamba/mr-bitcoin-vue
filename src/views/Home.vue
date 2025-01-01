@@ -8,8 +8,8 @@
 </template>
 <script>
     import { userService } from '@/services/UserService';
-    import { bitcoinService } from '@/services/BitcoinService';
-import axios from 'axios';
+    import { bitcoinService } from '@/services/bitcoinService.js';
+    import axios from 'axios';
     export default {
         data() {
             return {
@@ -18,11 +18,11 @@ import axios from 'axios';
 
             }
         },
-        async created(){
-            try{
+        async created() {
+            try {
                 this.exchangeRate = await bitcoinService.getRate()
-                console.log('Bitcoin exchange rate:', this.exchangeRate);                
-            }catch (error){
+                console.log('Bitcoin exchange rate:', this.exchangeRate);
+            } catch (error) {
                 console.error('Failed to load exchange rate:', error)
             }
         }

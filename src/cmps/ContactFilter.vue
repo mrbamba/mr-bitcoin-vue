@@ -30,12 +30,12 @@
     display: flex;
     justify-content: center;
     .filter-input {
-        min-width: 400px;
         padding: 1rem;
         border: none;
         background-color: rgb(0, 100, 128);
         color: #fff;
         border-radius: 5px;
+        min-width: 370px;
     }
     ::placeholder{
         color: #fff;

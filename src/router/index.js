@@ -24,7 +24,7 @@ const router = createRouter({
             component: ContactDetails,
         },
         {
-            path: '/contacts/edit/:_id',
+            path: '/contacts/edit/:_id?',
             name: 'ContactEdit',
             component: ContactEdit,
         },

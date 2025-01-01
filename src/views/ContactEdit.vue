@@ -13,7 +13,7 @@
 
             <label for="phone">Phone:</label>
             <input v-model="contact.phone" type="phone" placeholder="Phone">
-            <button>Save</button>
+            <button :disabled="!contact.name">Save</button>
         </form>
         <h1 v-else>Loading...</h1>
 
@@ -21,6 +21,8 @@
 </template>
 <script>
     import { contactService } from '@/services/contactService';
+    import { showErrorMsg, showSuccessMsg } from '@/services/eventBus.service';
+
     export default {
         data() {
             return {
@@ -28,17 +30,40 @@
             }
         },
         async created() {
-            const { _id: contactId } = this.$route.params
+            const { _id: contactId } = this.$route.params || null
 
             if (contactId) {
                 this.contact = await contactService.getContactById(contactId)
             } else {
                 this.contact = contactService.getEmptyContact()
             }
+            console.log(this.contact);
+
         },
         methods: {
             async onSave() {
-                await contactService.saveContact(this.contact)
+                console.log(this.contact);
+                // if (this.contact._id) {
+                //     showSuccessMsg(`Successfully updated contact ${this.contact._id}`)
+                // } else {
+                //     showSuccessMsg(`Successfully added contact.`)
+                // }
+                try {
+                    if (this.contact._id) {
+                        showSuccessMsg(`Successfully updated contact ${this.contact._id}`)
+                    } else {
+                        showSuccessMsg(`Successfully added contact.`)
+                    }
+                    await contactService.saveContact(this.contact)
+                } catch (err) {
+                    if (this.contact._id) {
+                        showErrorMsg(`Couldn't update contact ${this.contact._id}`)
+                    } else {
+                        showErrorMsg(`Couldn't add contact.`)
+                    }
+
+                }
+
                 this.$router.go(-1)
             }
         }
@@ -57,6 +82,11 @@ a {
     }
 }
 
+disabled {
+    color: black;
+    background-color: gray;
+}
+
 .contact-edit {
     display: flex;
     flex-direction: column;
@@ -66,6 +96,7 @@ a {
     // justify-items: center;
     img {
         max-width: 400px;
+        margin: 60px auto;
     }
 
     input,
@@ -75,15 +106,37 @@ a {
         border-radius: 5px;
         border: none;
         background-color: rgb(206, 233, 242);
+
+
+    }
+
+    ::placeholder {
+        color: black;
+        opacity: 1
+    }
+
+    button {
+        background-color: rgb(41, 148, 184);
+        color: white;
     }
 
     button {
         cursor: pointer;
 
         &:hover {
-            background-color: gray;
-            color: white;
+            background-color: rgb(18, 110, 141);
         }
     }
+
+    button:disabled {
+        color: black;
+        background-color: gray;
+        cursor: unset;
+
+        &:hover {
+            background-color: gray;
+        }
+    }
+
 }
 </style>
