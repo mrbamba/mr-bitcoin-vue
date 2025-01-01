@@ -2,11 +2,11 @@
     <div class="statistics-view">
         <h1>Statistics</h1>
 
-        <h3>marketPriceHistory</h3>
-        <BarChart :barData="marketPriceHistory" label="Market price history"/>
+        <h2>Market price history</h2>
+        <BarChart v-if="marketPriceHistory" :barData="marketPriceHistory" label="Market price history - average by month"/>
         <!-- <pre>{{marketPriceHistory}}</pre> -->
-        <h3>avgBlockSize</h3>
-        <BarChart :barData="avgBlockSize" label="Average block size"/>
+        <h2>Average block size</h2>
+        <BarChart v-if="avgBlockSize" :barData="avgBlockSize" label="Average block size by month"/>
 
         <!-- <pre>{{ avgBlockSize }}</pre> -->
         <!-- <pre>{{ marketPriceHistory }}</pre> -->
@@ -30,7 +30,6 @@
 
             try {
                 this.marketPriceHistoryRaw = await bitcoinService.getMarketPriceHistory()
-                // console.log('marketPriceHistory:', this.marketPriceHistory);
                 this.marketPriceHistory = this.summarizeDataPerMonth(this.marketPriceHistoryRaw)
 
             } catch (error) {
@@ -87,6 +86,10 @@
 </script>
 <style lang="scss">
 .statistics-view {
+    h2{
+        margin-block-start: 2rem;
+    }
+    text-align: center;
     padding: 1rem;
 
 }
