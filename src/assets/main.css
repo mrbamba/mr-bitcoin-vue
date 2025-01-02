@@ -1,18 +1,13 @@
 @import './base.css';
 
 #app {
-  /* max-width: 1280px; */
   margin: 0 auto;
   font-weight: normal;
-  /* display: grid; */
-  /* grid-template-rows: 1fr 1fr; */
 }
 
 body {
     margin: 0;
     padding: 0;
-    /* display: flex;
-    flex-direction: row; */
 }
 
 

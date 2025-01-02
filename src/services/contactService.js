@@ -161,10 +161,10 @@ function deleteContact(id) {
         const index = contacts.findIndex(contact => contact._id === id)
         if (index !== -1) {
             contacts.splice(index, 1)
-            console.log(`Contact with ID ${id} removed. Updated contacts:`, contacts);
+            // console.log(`Contact with ID ${id} removed. Updated contacts:`, contacts);
             resolve(contacts)
         } else{
-            console.error(`Contact with ID ${id} not found. `)
+            // console.error(`Contact with ID ${id} not found. `)
             reject(`Contact with ID ${id} not found. `)
         }
 

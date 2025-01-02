@@ -11,8 +11,11 @@
 
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .about-view{
+    h1{
+        text-align: center;
+    }
     padding: 1rem;
 }
 </style>

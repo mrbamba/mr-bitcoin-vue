@@ -35,7 +35,7 @@
         background-color: rgb(0, 100, 128);
         color: #fff;
         border-radius: 5px;
-        min-width: 370px;
+        min-width: calc(100vw - 260px);
     }
     ::placeholder{
         color: #fff;
