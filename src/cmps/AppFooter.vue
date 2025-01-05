@@ -1,7 +1,12 @@
 <template>
     <div class="app-footer">
+        <router-link to="/"><h1>MrBitcoin &copy;</h1></router-link>
+        
         <router-link to="/">
-            <h1>MrBitcoin &copy;</h1>
+            <nav>
+                <router-link to="/about">About</router-link>
+
+            </nav>
         </router-link>
     </div>
 </template>
@@ -16,8 +21,9 @@
     // vertical-align: middle;
     // line-height: 100px;
     display: flex;
+    // flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     // height: 5vh;
 
     // max-height: 100px;
@@ -28,16 +34,20 @@
     color: white;
     text-align: center;
     height: 90px;
+    padding: 0 15px;
+    line-height: 90px;
 
     a {
         text-decoration: none;
         color: whitesmoke;
+        padding: 0px;
 
         &:hover {
             color: black;
         }
     }
-    h1{
+
+    h1 {
         margin: 0;
         padding: 0;
     }

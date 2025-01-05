@@ -8,13 +8,37 @@
             <router-link to="/">Home</router-link>
             <router-link to="/contacts">Contacts</router-link>
             <router-link to="/statistics">Statistics</router-link>
-            <router-link to="/about">About</router-link>
+            <!-- <router-link v-if="user" to="/signup">Signup</router-link> -->
+            <router-link to="/signup" @click="signOut">{{ signupLinkText }}</router-link>
         </nav>
     </div>
 </template>
 <script>
-    export default {
+    import { userService } from '@/services/userService';
 
+    export default {
+        props: {
+            user: {
+                type: Object,
+                required: false,
+            }
+        },
+        data() {
+            return {
+                // signupLinkText: Signup
+            }
+        },
+        methods: {
+            signOut() {
+                userService.signOut()
+                this.$store.dispatch({ type: 'signoutUser'})
+            }
+        },
+        computed: {
+            signupLinkText() {
+                return !!this.user ? 'Signout' : 'Signup'
+            }
+        }
     }
 </script>
 <style lang="scss">
@@ -32,17 +56,20 @@
     color: white;
     text-align: center;
     height: 100px;
-    .brand{
+
+    .brand {
         display: flex;
         flex-direction: row;
+
         // max-height: 100pxs;
-        img{
+        img {
             // position: fixed;
             max-width: 100px;
             margin-right: 10px;
             // margin-left: 20px;
         }
-        h1{
+
+        h1 {
             font-weight: 900;
             color: rgb(0, 0, 0);
         }
@@ -50,11 +77,13 @@
 
     nav {
         display: flex;
-        ul{
+
+        ul {
 
             margin: 0;
             padding: 0;
         }
+
         // justify-content: center;
         // align-items: center;
         // height: 100px;
@@ -67,16 +96,18 @@
             padding: 0px 0.5rem;
         }
     }
-    .router-link-exact-active{
+
+    .router-link-exact-active {
         color: #fff;
     }
 }
 
 /* For Mobile*/
-@media (max-width:740px){
+@media (max-width:740px) {
     .app-header {
         justify-content: center;
-        .brand{
+
+        .brand {
             display: none;
         }
 

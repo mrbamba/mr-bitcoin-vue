@@ -2,7 +2,7 @@
     <section v-if="contact" class="transfer-coins">
         <h1>Transfer coins to {{ contact.name }}</h1>
         <form @submit="onTransferCoins" class="transfer-form">
-            <input type="number" id="amount" placeholder="Amount to transfer" v-model="amount">
+            <input type="text" id="amount" placeholder="Amount to transfer" v-model="amount" @keypress="isNumber($event)">
             <button :disabled="!amount">Transfer</button>
         </form>
     </section>
@@ -30,9 +30,18 @@
             onTransferCoins() {
                 if (!this.amount || this.maxCoins < this.amount) {
                     showErrorMsg(`Couldn't send coins to ${this.contact.name}, not enough coins.`)
-                } else {
+                } else if(isNaN(this.amount)){
+                    showErrorMsg('Amount must be a valid number, no other characters allowed.')
+                    this.amount = null
+                }else {
                     this.$emit('transferCoins', this.amount)
                     this.amount = null
+                }
+            },
+            isNumber(evt){
+                console.log(evt.key)
+                if(isNaN(evt.key)){
+                    evt.preventDefault();
                 }
             }
         }

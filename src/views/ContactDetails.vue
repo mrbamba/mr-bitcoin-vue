@@ -11,38 +11,42 @@
 
     <section v-if="contact" class="contact-details-actions">
         <RouterLink :to="`/contacts/edit/${contact._id}`" class="edit-link">Edit</RouterLink>
-        <button @click="remove()">Delete</button>
+        <button @click="removeContact()">Delete</button>
     </section>
 
-    <TransferCoins 
-        v-if="contact" 
-        :maxCoins="user.balance" 
-        :contact="contact" 
-        @transferCoins="transferCoins" 
-    />
+    <TransferCoins v-if="contact" :maxCoins="user.balance" :contact="contact" @transferCoins="transferCoins" />
+    <TransactionList v-if="user && contact" :contact="contact" :transactions="transactions" />
 
 </template>
 <script>
+    import TransactionList from '@/cmps/TransactionList.vue';
     import TransferCoins from '@/cmps/TransferCoins.vue';
     import { contactService } from '@/services/contactService';
     import { showErrorMsg, showSuccessMsg } from '@/services/eventBus.service';
-    import { userService } from '@/services/UserService';
 
     export default {
         data() {
             return {
                 contact: null,
-                user: userService.getUser()
             }
         },
         async created() {
             const { _id: contactId } = this.$route.params
             this.contact = await contactService.getContactById(contactId)
-            console.log(this.contact);
-
+        },
+        computed: {
+            user() {
+                return this.$store.getters.user
+            },
+            transactions(){
+                var transactions = this.user.transactions.filter(transaction => transaction.toContactId == this.contact._id)
+                
+                return transactions
+            }
         },
         methods: {
-            async remove() {
+
+            async removeContact() {
                 const contactId = this.contact._id
                 try {
                     await this.$store.dispatch({ type: 'removeContact', contactId })
@@ -52,15 +56,24 @@
                     showErrorMsg(`Couldn't delete contact ${contactId}`)
                 }
             },
-            transferCoins(amount){
-                console.log('Amount to transfer:', amount);
-                showSuccessMsg(`Successfully sent coins to ${this.contact.name}`)
 
-                
+            async transferCoins(amount) {
+                if (!this.contact) {
+                    showErrorMsg('No contact selected for transfer.')
+                    return
+                }
+                try {
+                    await this.$store.dispatch({ type: 'addTransferFundsTransaction', contact: this.contact, amount })
+                    showSuccessMsg(`Successfully sent coins to ${this.contact.name}`)
+                } catch (err) {
+
+                }
+                // this.userService.addMove
             }
         },
         components: {
-            TransferCoins
+            TransferCoins,
+            TransactionList,
         }
 
     }

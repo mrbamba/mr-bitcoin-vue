@@ -182,66 +182,31 @@ function sort(arr) {
 
 async function getContacts(filterBy = null) {
     var contacts = await storageService.query(KEY)
-    console.log(contacts);
+    console.log('Contacts: ',contacts)
+
+    if (filterBy && filterBy.term) {
+        contacts = await filter(filterBy.term)
+    }
+    console.log(contacts)
     
-    return new Promise(async (resolve, reject) =>  {
-        var contactsToReturn = contacts;
-        if (filterBy && filterBy.term) {
-            contactsToReturn = await filter(filterBy.term)
-        }
-        console.log(contactsToReturn);
-        
-        // const filteredContacts = await
-        resolve(sort(contactsToReturn))
-    })
+    return sort(contacts)
+
 }
 
 function getContactById(id) {
     return storageService.get(KEY, id)
-    // return new Promise((resolve, reject) => {
-    //     const contact = contacts.find(contact => contact._id === id)
-    //     contact ? resolve(contact) : reject(`Contact id ${id} not found!`)
-    // })
 }
 
 function deleteContact(id) {
     return storageService.remove(KEY, id)
-    // return new Promise((resolve, reject) => {
-    //     const index = contacts.findIndex(contact => contact._id === id)
-    //     if (index !== -1) {
-    //         contacts.splice(index, 1)
-    //         // console.log(`Contact with ID ${id} removed. Updated contacts:`, contacts);
-    //         resolve(contacts)
-    //     } else {
-    //         // console.error(`Contact with ID ${id} not found. `)
-    //         reject(`Contact with ID ${id} not found. `)
-    //     }
 
-    // })
 }
 
-// function _updateContact(contact) {
-//     return new Promise((resolve, reject) => {
-//         const index = contacts.findIndex(c => contact._id === c._id)
-//         if (index !== -1) {
-//             contacts[index] = contact
-//         }
-//         resolve(contact)
-//     })
-// }
 
-// function _addContact(contact) {
-//     return new Promise((resolve, reject) => {
-//         contact._id = _makeId()
-//         contacts.push(contact)
-//         resolve(contact)
-//     })
-// }
 
 async function saveContact(contact) {
     if (contact._id) return storageService.put(KEY, contact)
     else return storageService.post(KEY, contact)
-    // return contact._id ? _updateContact(contact) : _addContact(contact)
 }
 
 function getEmptyContact() {

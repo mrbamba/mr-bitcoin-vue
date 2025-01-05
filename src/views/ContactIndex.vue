@@ -20,7 +20,6 @@
         },
         created() {
             this.loadContacts()
-            // this.$store.subscribe((cmd, state)=> console.log(cmd, state))
         },
         methods: {
 
