@@ -1,7 +1,7 @@
 <template>
     <div class="app-header">
         <div class="brand">
-            <img src="./../../public/gold-bitcoin.png" alt="">
+            <img src="/gold-bitcoin.png" alt="">
             <h1>MrBitcoin</h1>
         </div>
         <nav>

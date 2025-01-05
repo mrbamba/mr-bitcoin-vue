@@ -3,7 +3,7 @@
         <button @click.prevent="onRemoveContact">X</button>
         <img :src="`https://robohash.org/${contact._id}.png`" :alt="contact.name">
         <h2>{{ contact.name }}</h2>
-        <RouterLink :to="`/contacts/edit/${contact._id}`">Edit</RouterLink>
+        <RouterLink :to="`/contacts/edit/${contact._id}`" class="edit-link">Edit</RouterLink>
         <!-- <pre>{{ contact }}</pre> -->
     </div>
 </template>
@@ -40,9 +40,10 @@
     background-color: lightblue;
     min-width: 200px;
 
-    a {
+    .edit-link {
         text-decoration: none;
         color: black;
+        margin-left: 5px;
     }
 
     img {

@@ -38,17 +38,21 @@
     ul {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 10px;
+        // gap: 6px;
+        margin: 0 auto;
         list-style: none;
         padding: 0px 10px;
 
         li {
             display: grid;
-            justify-items: start;
-            padding: 10px;
+            // justify-items: start;
+            // padding: 10px;
+            margin: 10px auto;
             a{
                 text-decoration: none;
                 color: black;
+                padding: 0%;
+                margin: 0;
             }
         }
     }

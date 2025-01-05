@@ -3,7 +3,7 @@ import { contactService } from "@/services/contactService";
 export default{
     state(){
         return{
-            contact:null,
+            contacts:null,
         }
     },
     mutations:{
