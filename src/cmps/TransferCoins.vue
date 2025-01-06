@@ -39,8 +39,8 @@
                 }
             },
             isNumber(evt){
-                console.log(evt.key)
-                if(isNaN(evt.key)){
+                // console.log(evt.key)
+                if(isNaN(evt.key) && evt.key !=='.'){
                     evt.preventDefault();
                 }
             }

@@ -167,7 +167,7 @@ function _createContact(_id, name, email, phone) {
 }
 
 function sort(arr) {
-    console.log('Sort arr: ', arr);
+    // console.log('Sort arr: ', arr);
     
     return arr.sort((a, b) => {
         if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
@@ -182,12 +182,12 @@ function sort(arr) {
 
 async function getContacts(filterBy = null) {
     var contacts = await storageService.query(KEY)
-    console.log('Contacts: ',contacts)
+    // console.log('Contacts: ',contacts)
 
     if (filterBy && filterBy.term) {
         contacts = await filter(filterBy.term)
     }
-    console.log(contacts)
+    // console.log(contacts)
     
     return sort(contacts)
 
@@ -220,10 +220,8 @@ function getEmptyContact() {
 async function filter(term) {
     term = term.toLocaleLowerCase()
     var contacts = await storageService.query(KEY)
-    console.log('Contacts at filter initialized',contacts);
+    // console.log('Contacts at filter initialized',contacts);
 
-    console.log('Term:', term);
-    
     return contacts.filter(contact => {
         return contact.name.toLocaleLowerCase().includes(term) ||
             contact.phone.toLocaleLowerCase().includes(term) ||

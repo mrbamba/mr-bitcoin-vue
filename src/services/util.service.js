@@ -1,6 +1,6 @@
 'use strict'
 
-export function makeId(length = 5) {
+export function makeId(length = 32) {
 	var id = ''
 	var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 

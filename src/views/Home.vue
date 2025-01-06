@@ -13,7 +13,7 @@
     export default {
         data() {
             return {
-                user: '',
+                // user: '',
                 exchangeRate: null
 
             }
@@ -27,16 +27,21 @@
             }
 
 
-            try {
-                this.user = await userService.getUser()
-                console.log(this.user);
-            } catch (error) {
-                console.error('No signedup user')
-            }
-            if (!this.user.name) {
-                this.$router.push('/signup')
-            }
+            // try {
+            //     this.user = await userService.getUser()
+            //     console.log(this.user);
+            // } catch (error) {
+            //     console.error('No signedup user')
+            // }
+            // if (!this.user.name) {
+            //     this.$router.push('/signup')
+            // }
 
+        },
+        computed: {
+            user() {
+                return this.$store.getters.user
+            }
         }
 
     }

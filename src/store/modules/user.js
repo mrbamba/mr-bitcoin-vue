@@ -22,7 +22,7 @@ export default {
     actions: {
         async loadUser(context) {
             try {
-                const user = await userService.getUser()
+                const user = await userService.getLoggedInUser()
                 context.commit({ type: 'setUser', user })
             } catch (err) {
                 console.error(err)
@@ -38,18 +38,20 @@ export default {
                 throw err
             }
         },
-        async signupUser({ commit }, { user }) {
+        async signupLoginUser({ commit }, { userName }) {
+            // console.log(userName)
             try {
-                await userService.setUser(user)
-                commit({ type: 'setUser', user })
+                const userToLogin = await userService.setUser(userName)
+                // console.log('User to login: ',userToLogin);
+                
+                commit({ type: 'setUser', user: userToLogin })
             } catch (err) {
                 console.error(err)
                 throw err
             }
         },
         async addTransferFundsTransaction({ commit }, { contact, amount }) {
-            console.log('running in store');
-            
+
             try {
                 const updatedUser = await userService.addTransferFundsTransaction(contact, amount)
                 commit({ type: 'setUser', user: updatedUser })

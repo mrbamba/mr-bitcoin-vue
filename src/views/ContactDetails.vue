@@ -39,7 +39,7 @@
                 return this.$store.getters.user
             },
             transactions(){
-                var transactions = this.user.transactions.filter(transaction => transaction.toContactId == this.contact._id)
+                var transactions = this.user.transactions.filter(transaction => transaction.toContactId == this.contact._id).reverse().slice(0,3)
                 
                 return transactions
             }

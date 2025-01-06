@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h2>Transactions to {{ contact.name }}</h2>
+        <h2>Last 3 transactions to {{ contact.name }}</h2>
         <ul class="transaction-list">
             <li v-for="transaction in transactions" :key="transaction._id">
                 <TransactionPreview :transaction="transaction" :contact="contact" />
