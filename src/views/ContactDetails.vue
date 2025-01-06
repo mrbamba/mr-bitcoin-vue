@@ -1,21 +1,24 @@
 <template>
+    <section>
+        <section v-if="contact" class="contact-details">
+            <a @click="$router.go(-1)">Back</a>
+            <img :src="`https://robohash.org/${contact._id}.png`" :alt="contact.name">
+            <h2>{{ contact.name }}</h2>
+            <h3>{{ contact.email }}</h3>
+            <h3>{{ contact.phone }}</h3>
+        </section>
+        <h1 v-else>Loading...</h1>
 
-    <section v-if="contact" class="contact-details">
-        <a @click="$router.go(-1)">Back</a>
-        <img :src="`https://robohash.org/${contact._id}.png`" :alt="contact.name">
-        <h2>{{ contact.name }}</h2>
-        <h3>{{ contact.email }}</h3>
-        <h3>{{ contact.phone }}</h3>
+        <section v-if="contact" class="contact-details-actions">
+            <RouterLink :to="`/contacts/edit/${contact._id}`" class="edit-link">Edit</RouterLink>
+            <button @click="removeContact()">Delete</button>
+        </section>
+
+        <TransferCoins v-if="contact" :maxCoins="user.balance" :contact="contact" @transferCoins="transferCoins" />
+        <TransactionList v-if="user && contact" :contact="contact" :transactions="transactions" />
+
     </section>
-    <h1 v-else>Loading...</h1>
 
-    <section v-if="contact" class="contact-details-actions">
-        <RouterLink :to="`/contacts/edit/${contact._id}`" class="edit-link">Edit</RouterLink>
-        <button @click="removeContact()">Delete</button>
-    </section>
-
-    <TransferCoins v-if="contact" :maxCoins="user.balance" :contact="contact" @transferCoins="transferCoins" />
-    <TransactionList v-if="user && contact" :contact="contact" :transactions="transactions" />
 
 </template>
 <script>
@@ -38,9 +41,9 @@
             user() {
                 return this.$store.getters.user
             },
-            transactions(){
-                var transactions = this.user.transactions.filter(transaction => transaction.toContactId == this.contact._id).reverse().slice(0,3)
-                
+            transactions() {
+                var transactions = this.user.transactions.filter(transaction => transaction.toContactId == this.contact._id).reverse().slice(0, 3)
+
                 return transactions
             }
         },
