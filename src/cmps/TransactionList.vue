@@ -1,12 +1,13 @@
 <template>
     <section>
-        <h2>Last 3 transactions to {{ contact.name }}</h2>
+        <h2 v-if="contact">Last 3 transactions to {{ contact.name }}</h2>
+        <h2 v-else>Your transactions:</h2>
         <ul class="transaction-list">
             <li v-for="transaction in transactions" :key="transaction._id">
                 <TransactionPreview :transaction="transaction" :contact="contact" />
             </li>
         </ul>
-        <h3 v-if="!transactions[0]">No transactions exist to contact yet.</h3>
+        <h3 v-if="!transactions[0] ">No transactions exist to contact yet.</h3>
 
     </section>
 </template>

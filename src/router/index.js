@@ -22,6 +22,9 @@ const router = createRouter({
             path: '/contacts',
             name: 'ContactIndex',
             component: ContactIndex,
+            children:{
+                
+            }
         },
         {
             path: '/contacts/:_id',

@@ -39,6 +39,8 @@
     align-items: center;
     background-color: lightblue;
     min-width: 200px;
+    border-radius: 1rem;
+    padding: 0.5rem;
 
     .edit-link {
         text-decoration: none;
